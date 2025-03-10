@@ -2,7 +2,7 @@
 
 A simple and fun Brick Breaker game where you control a paddle with the arrow keys to bounce a ball up to break bricks. This game is built using the HTML5 canvas element and API.
 
-Check out the live demo [here](https://sharmaasahill.github.io/brick-breaker/)
+Check out the live demo [here](https://ayeshatasnim15.github.io/Bounce-Breaker/)
 
 ![game screenshot](image.png)
 
