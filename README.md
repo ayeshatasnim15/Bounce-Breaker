@@ -1,4 +1,4 @@
-# Brick Breaker Game
+# Bounce Breaker Game
 
 A simple and fun Brick Breaker game where you control a paddle with the arrow keys to bounce a ball up to break bricks. This game is built using the HTML5 canvas element and API.
 
@@ -16,13 +16,17 @@ Check out the live demo [here](https://sharmaasahill.github.io/brick-breaker/)
 ## Setup
 
 1. Clone the repository:
+
    ```sh
-   git clone https://github.com/sharmaasahill/brick-breaker
+   git clone https://github.com/ayeshatasnim15/Bounce-Breaker
    ```
+
 2. Navigate to the project directory:
+
    ```sh
-   cd Brick Breaker-game
+   cd Bounce Breaker-game
    ```
+
 3. Open `index.html` in your web browser to start playing.
 
 ## Technologies Used
@@ -33,6 +37,7 @@ Check out the live demo [here](https://sharmaasahill.github.io/brick-breaker/)
 ## Learning Outcomes
 
 By working on this project, you will learn how to:
+
 - Draw elements on the canvas.
 - Use canvas paths to create shapes.
 - Handle keyboard input for paddle movement.
