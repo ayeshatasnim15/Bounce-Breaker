@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Bounce Breaker - HTML5 Canvas Game</title>
+    <meta name="description" content="Classic brick breaker game with power-ups, multiple levels, particle effects, and advanced gameplay mechanics. Built with HTML5 Canvas and modern JavaScript." />
+    <meta name="keywords" content="brick breaker, HTML5 game, canvas game, JavaScript game, power-ups, particle effects, responsive design" />
+    <meta name="author" content="Game Developer" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Bounce Breaker - HTML5 Canvas Game" />
+    <meta property="og:description" content="Classic brick breaker game with advanced features and stunning visual effects." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ayeshatasnim15.github.io/Bounce-Breaker/" />
+    <meta property="og:image" content="image.png" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bounce Breaker" />
+    <meta name="twitter:description" content="HTML5 Canvas brick breaker game" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#58a6ff" />
+    <meta name="msapplication-TileColor" content="#58a6ff" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;Bounce Breaker&quot;,&quot;short_name&quot;:&quot;Bounce Breaker&quot;,&quot;description&quot;:&quot;HTML5 Canvas Game&quot;,&quot;start_url&quot;:&quot;/&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#0d1117&quot;,&quot;theme_color&quot;:&quot;#58a6ff&quot;}" />
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <h2>Loading Bounce Breaker...</h2>
+        <p>Preparing your gaming experience</p>
+      </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div id="main-menu" class="game-screen">
+      <div class="menu-container">
+        <h1 class="game-title">Bounce Breaker</h1>
+        <div class="menu-buttons">
+          <button id="play-btn" class="menu-btn">
+            <span class="btn-icon">🎮</span>
+            <span class="btn-text">Play Game</span>
+          </button>
+          <button id="settings-btn" class="menu-btn">
+            <span class="btn-icon">⚙️</span>
+            <span class="btn-text">Settings</span>
+          </button>
+          <button id="highscores-btn" class="menu-btn">
+            <span class="btn-icon">🏆</span>
+            <span class="btn-text">High Scores</span>
+          </button>
+        </div>
+        <div class="version">v2.0</div>
+        <div class="tech-stack">
+          <span class="tech-badge">HTML5</span>
+          <span class="tech-badge">Canvas</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">CSS3</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Menu -->
+    <div id="settings-menu" class="game-screen hidden">
+      <div class="menu-container">
+        <h2>⚙️ Settings</h2>
+        <div class="setting-item">
+          <label>🔊 Sound Effects</label>
+          <input type="checkbox" id="sound-toggle" checked>
+        </div>
+        <div class="setting-item">
+          <label>🎵 Background Music</label>
+          <input type="checkbox" id="music-toggle" checked>
+        </div>
+        <div class="setting-item">
+          <label>✨ Particle Effects</label>
+          <input type="checkbox" id="particles-toggle" checked>
+        </div>
+        <div class="setting-item">
+          <label>🎯 Difficulty Level</label>
+          <select id="difficulty-select" class="setting-select">
+            <option value="easy">Easy</option>
+            <option value="normal" selected>Normal</option>
+            <option value="hard">Hard</option>
+            <option value="expert">Expert</option>
+          </select>
+        </div>
+        <button id="back-to-menu" class="menu-btn">
+          <span class="btn-icon">←</span>
+          <span class="btn-text">Back to Menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- High Scores -->
+    <div id="highscores-menu" class="game-screen hidden">
+      <div class="menu-container">
+        <h2>🏆 High Scores</h2>
+        <div class="highscores-header">
+          <span>Rank</span>
+          <span>Player</span>
+          <span>Score</span>
+          <span>Level</span>
+        </div>
+        <div id="highscores-list"></div>
+        <button id="back-to-menu-2" class="menu-btn">
+          <span class="btn-icon">←</span>
+          <span class="btn-text">Back to Menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="game-screen hidden">
+      <!-- Game UI -->
+      <div class="game-ui">
+        <div class="ui-left">
+          <div class="score-display">
+            <span class="ui-label">Score</span>
+            <span id="score" class="ui-value">0</span>
+          </div>
+          <div class="level-display">
+            <span class="ui-label">Level</span>
+            <span id="level" class="ui-value">1</span>
+          </div>
+          <div class="lives-display">
+            <span class="ui-label">Lives</span>
+            <span id="lives" class="ui-value">3</span>
+          </div>
+        </div>
+        <div class="ui-right">
+          <div class="combo-display">
+            <span class="ui-label">Combo</span>
+            <span id="combo" class="ui-value">x1</span>
+          </div>
+          <div class="powerup-display">
+            <span class="ui-label">Power</span>
+            <span id="powerup" class="ui-value">None</span>
+          </div>
+          <button id="pause-btn" class="ui-btn" title="Pause Game">⏸️</button>
+        </div>
+      </div>
+
+      <!-- Game Canvas Container -->
+      <div class="canvas-container">
+        <canvas id="canvas" width="800" height="600"></canvas>
+        <div class="canvas-overlay">
+          <div class="game-instructions">
+            <p>Use <kbd>←</kbd> <kbd>→</kbd> to move paddle</p>
+            <p>Press <kbd>Space</kbd> to launch ball</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pause Menu -->
+      <div id="pause-menu" class="overlay hidden">
+        <div class="pause-container">
+          <h2>⏸️ Game Paused</h2>
+          <div class="pause-stats">
+            <p>Current Score: <span id="pause-score">0</span></p>
+            <p>Level: <span id="pause-level">1</span></p>
+          </div>
+          <div class="pause-buttons">
+            <button id="resume-btn" class="menu-btn">
+              <span class="btn-icon">▶️</span>
+              <span class="btn-text">Resume</span>
+            </button>
+            <button id="restart-btn" class="menu-btn">
+              <span class="btn-icon">🔄</span>
+              <span class="btn-text">Restart</span>
+            </button>
+            <button id="quit-btn" class="menu-btn">
+              <span class="btn-icon">🏠</span>
+              <span class="btn-text">Quit to Menu</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Level Complete -->
+      <div id="level-complete" class="overlay hidden">
+        <div class="level-container">
+          <h2>🎉 Level Complete!</h2>
+          <div class="level-stats">
+            <p>Score: <span id="level-score">0</span></p>
+            <p>Combo: <span id="level-combo">x1</span></p>
+            <p>Time: <span id="level-time">00:00</span></p>
+          </div>
+          <div class="level-bonus">
+            <p>Bonus Points: <span id="level-bonus">0</span></p>
+          </div>
+          <button id="next-level-btn" class="menu-btn">
+            <span class="btn-icon">➡️</span>
+            <span class="btn-text">Next Level</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Game Over -->
+      <div id="game-over" class="overlay hidden">
+        <div class="gameover-container">
+          <h2>💀 Game Over</h2>
+          <div class="final-stats">
+            <p>Final Score: <span id="final-score">0</span></p>
+            <p>Level Reached: <span id="final-level">1</span></p>
+            <p>Total Time: <span id="final-time">00:00</span></p>
+          </div>
+          <div class="score-input">
+            <label for="player-name">Enter your name:</label>
+            <input type="text" id="player-name" placeholder="Anonymous" maxlength="20">
+          </div>
+          <div class="gameover-buttons">
+            <button id="save-score-btn" class="menu-btn">
+              <span class="btn-icon">💾</span>
+              <span class="btn-text">Save Score</span>
+            </button>
+            <button id="play-again-btn" class="menu-btn">
+              <span class="btn-icon">🔄</span>
+              <span class="btn-text">Play Again</span>
+            </button>
+            <button id="menu-btn" class="menu-btn">
+              <span class="btn-icon">🏠</span>
+              <span class="btn-text">Main Menu</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2024 Bounce Breaker. Built with ❤️ using HTML5 Canvas & JavaScript</p>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">Documentation</a>
+          <a href="#" class="footer-link">Support</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
