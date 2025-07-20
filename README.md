@@ -4,10 +4,6 @@ A classic brick breaker game built with HTML5 Canvas and JavaScript. Features mo
 
 ![Game Screenshot](image.png)
 
-## 🚀 Live Demo
-
-**[Play Online](https://ayeshatasnim15.github.io/Bounce-Breaker/)**
-
 ## ✨ Features
 
 ### Gameplay
@@ -63,7 +59,7 @@ A classic brick breaker game built with HTML5 Canvas and JavaScript. Features mo
 ### Quick Start
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/bounce-breaker.git
+git clone https://github.com/ayeshatasnim15/Bounce-Breaker.git
 
 # Navigate to project directory
 cd bounce-breaker
